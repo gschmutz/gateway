@@ -26,6 +26,22 @@ docs:
 test:
 	USE_TESTCONTAINERS=1 gotestsum --rerun-fails --format github-actions --packages="./..." -- -timeout=30m
 
+# Run integration tests for specific connector
+# Usage: make test-integration CONNECTOR=snowflake
+.PHONY: test-integration
+test-integration:
+	@if [ -z "$(CONNECTOR)" ]; then \
+		echo "Error: CONNECTOR is not set. Usage: make test-integration CONNECTOR=snowflake"; \
+		exit 1; \
+	fi
+	@echo "Running integration tests for $(CONNECTOR)"
+	gotestsum --rerun-fails --format github-actions --packages="./connectors/$(CONNECTOR)/..." -- -tags=integration -timeout=15m
+
+# Run all integration tests
+.PHONY: test-integration-all
+test-integration-all:
+	@echo "Running all integration tests"
+	gotestsum --rerun-fails --format github-actions --packages="./..." -- -tags=integration -timeout=30m
 
 # Define variables for the suite group, path, and name with defaults
 SUITE_GROUP ?= 'connectors'
