@@ -37,3 +37,20 @@ Or as alternative with direct connection string:
 type: snowflake
 conn_string: myuser:secret@myaccount/MYDB/PUBLIC?warehouse=COMPUTE_WH&role=ACCOUNTADMIN
 ```
+
+
+## Dev
+
+Run only snowflake tests:
+
+```bash
+$ cd gateway
+$ USE_TESTCONTAINERS=1 gotestsum --rerun-fails --format github-actions --packages="./connectors/snowflake/..." -- -timeout=30m
+```
+
+Or Run
+
+```bash
+$ cd gateway
+$ make test-integration CONNECTOR=snowflake
+```

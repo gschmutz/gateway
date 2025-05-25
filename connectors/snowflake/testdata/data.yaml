@@ -1,0 +1,115 @@
+# Test data for Snowflake integration tests
+# This defines the schema and initial data for test tables
+
+databases:
+  - name: TEST_DB
+    schemas:
+      - name: PUBLIC
+        tables:
+          - name: INTEGRATION_TEST_USERS
+            columns:
+              - name: ID
+                type: INTEGER
+                primary_key: true
+              - name: NAME
+                type: VARCHAR(100)
+              - name: EMAIL
+                type: VARCHAR(255)
+              - name: AGE
+                type: INTEGER
+              - name: SALARY
+                type: DECIMAL(10,2)
+              - name: IS_ACTIVE
+                type: BOOLEAN
+              - name: CREATED_AT
+                type: TIMESTAMP
+              - name: METADATA
+                type: VARIANT
+              - name: SKILLS
+                type: ARRAY
+            data:
+              - ID: 1
+                NAME: "Alice Johnson"
+                EMAIL: "alice@example.com"
+                AGE: 30
+                SALARY: 75000.50
+                IS_ACTIVE: true
+                CREATED_AT: "2023-01-15T10:30:00"
+                METADATA: '{"department": "Engineering", "level": "Senior"}'
+                SKILLS: '["Go", "Python", "SQL"]'
+              - ID: 2
+                NAME: "Bob Smith"
+                EMAIL: "bob@example.com"
+                AGE: 25
+                SALARY: 60000.00
+                IS_ACTIVE: true
+                CREATED_AT: "2023-02-20T14:45:00"
+                METADATA: '{"department": "Sales", "level": "Junior"}'
+                SKILLS: '["Excel", "PowerPoint"]'
+              - ID: 3
+                NAME: "Charlie Brown"
+                EMAIL: "charlie@example.com"
+                AGE: 35
+                SALARY: 85000.75
+                IS_ACTIVE: false
+                CREATED_AT: "2023-03-10T09:15:00"
+                METADATA: '{"department": "Marketing", "level": "Manager"}'
+                SKILLS: '["SEO", "Content Marketing"]'
+              - ID: 4
+                NAME: "Diana Ross"
+                EMAIL: "diana@example.com"
+                AGE: 28
+                SALARY: 70000.25
+                IS_ACTIVE: true
+                CREATED_AT: "2023-04-05T16:20:00"
+                METADATA: '{"department": "Engineering", "level": "Mid"}'
+                SKILLS: '["JavaScript", "React", "Node.js"]'
+              - ID: 5
+                NAME: "Edward Norton"
+                EMAIL: "edward@example.com"
+                AGE: 45
+                SALARY: 120000.00
+                IS_ACTIVE: true
+                CREATED_AT: "2023-05-01T11:00:00"
+                METADATA: '{"department": "Executive", "level": "Director"}'
+                SKILLS: '["Leadership", "Strategy"]'
+          
+          - name: INTEGRATION_TEST_ORDERS
+            columns:
+              - name: ID
+                type: INTEGER
+                primary_key: true
+              - name: USER_ID
+                type: INTEGER
+              - name: ORDER_DATE
+                type: DATE
+              - name: TOTAL
+                type: DECIMAL(10,2)
+              - name: STATUS
+                type: VARCHAR(50)
+            data:
+              - ID: 1
+                USER_ID: 1
+                ORDER_DATE: "2023-06-01"
+                TOTAL: 150.50
+                STATUS: "completed"
+              - ID: 2
+                USER_ID: 1
+                ORDER_DATE: "2023-06-15"
+                TOTAL: 225.75
+                STATUS: "completed"
+              - ID: 3
+                USER_ID: 2
+                ORDER_DATE: "2023-06-10"
+                TOTAL: 89.99
+                STATUS: "pending"
+              - ID: 4
+                USER_ID: 3
+                ORDER_DATE: "2023-06-20"
+                TOTAL: 450.00
+                STATUS: "cancelled"
+              - ID: 5
+                USER_ID: 4
+                ORDER_DATE: "2023-06-25"
+                TOTAL: 320.25
+                STATUS: "completed"
