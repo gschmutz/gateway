@@ -115,8 +115,13 @@ Upon successful startup, the terminal will display URLs for both services.`,
 
 		// If no servers were specified, use localhost with the provided address
 		if len(serverAddresses) == 0 {
-			serverAddresses = append(serverAddresses, fmt.Sprintf("http://localhost%s", addr))
-		}
+
+			if strings.HasPrefix(addr, ":") {
+				serverAddresses = append(serverAddresses, fmt.Sprintf("http://localhost%s", addr))
+			} else {
+				serverAddresses = append(serverAddresses, fmt.Sprintf("http://%s", addr))
+			}
+		}	
 
 		if err := a.RegisterRoutes(mux, disableSwagger, rawMode, serverAddresses...); err != nil {
 			return err
